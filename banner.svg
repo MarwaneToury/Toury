@@ -1,0 +1,45 @@
+<svg width="900" height="260" viewBox="0 0 900 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Marwane Toury — Portfolio">
+  <defs>
+    <linearGradient id="felt" x1="0" y1="0" x2="0" y2="260" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#173a31"/>
+      <stop offset="1" stop-color="#0e2620"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.26" cy="0.42" r="0.62">
+      <stop offset="0" stop-color="#ff4b57" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#ff4b57" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#faf3e2"/>
+      <stop offset="1" stop-color="#e9dcbf"/>
+    </linearGradient>
+  </defs>
+
+  <!-- felt background -->
+  <rect width="900" height="260" rx="18" fill="url(#felt)"/>
+  <rect width="900" height="260" rx="18" fill="url(#glow)"/>
+  <rect x="1" y="1" width="898" height="258" rx="17" fill="none" stroke="#ffd23f" stroke-opacity="0.22" stroke-width="1.5"/>
+
+  <!-- face card -->
+  <g transform="translate(58 55)">
+    <rect width="150" height="150" rx="16" fill="url(#card)" stroke="#d8c9a4" stroke-width="1.5"/>
+    <text x="16" y="33" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#1c1a17">M</text>
+    <text x="15" y="55" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#e5474f">&#9830;</text>
+    <text x="75" y="92" font-family="Georgia, 'Times New Roman', serif" font-size="58" fill="#e5474f" text-anchor="middle">&#9830;</text>
+    <g transform="translate(150 150) rotate(180)">
+      <text x="16" y="33" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#1c1a17">M</text>
+      <text x="15" y="55" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#e5474f">&#9830;</text>
+    </g>
+  </g>
+
+  <!-- title block -->
+  <text x="250" y="110" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="50" font-weight="800" fill="#f6efdd" letter-spacing="1">MARWANE TOURY</text>
+  <rect x="252" y="128" width="60" height="4" rx="2" fill="#ffd23f"/>
+  <text x="324" y="139" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffd23f" letter-spacing="3">SOFTWARE ENGINEER</text>
+  <text x="252" y="176" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9fb3ad">A card-game-inspired portfolio &#183; FR / EN</text>
+
+  <!-- suit accents -->
+  <text x="792" y="58" font-family="Georgia, serif" font-size="20" fill="#ffffff" opacity="0.12">&#9824;</text>
+  <text x="832" y="98" font-family="Georgia, serif" font-size="24" fill="#e5474f" opacity="0.22">&#9829;</text>
+  <text x="852" y="156" font-family="Georgia, serif" font-size="20" fill="#ffffff" opacity="0.12">&#9827;</text>
+  <text x="812" y="206" font-family="Georgia, serif" font-size="26" fill="#e5474f" opacity="0.28">&#9830;</text>
+</svg>
