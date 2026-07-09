@@ -426,6 +426,17 @@ section {
 .score-chip { background: rgba(24, 160, 251, 0.16); color: var(--chips); border: 1px solid rgba(24,160,251,.4); }
 .score-mult { background: rgba(255, 75, 87, 0.16); color: var(--mult); border: 1px solid rgba(255,75,87,.4); }
 .score-x { font-size: 1.6rem; color: var(--text-dim); }
+/* Phones: keep 375 × 8 = 3000 on one line so the absolute captions can't overlap */
+@media (max-width: 560px) {
+  .score-banner { gap: 8px; flex-wrap: nowrap; margin-bottom: 40px; }
+  .score-chip, .score-mult {
+    min-width: 0;
+    padding: 8px clamp(8px, 2.5vw, 16px);
+    font-size: clamp(1.1rem, 6vw, 1.7rem);
+  }
+  .score-x { font-size: 1.1rem; }
+  .score-cap { font-size: 0.52rem; letter-spacing: 0.08em; }
+}
 
 .skill-grid {
   display: grid;
@@ -457,7 +468,9 @@ section {
 }
 .skill-card .skill-name {
   font-weight: 700;
-  font-size: 1.05rem;
+  /* scales down on narrow cards so long names (PostgreSQL, TypeScript) don't overflow */
+  font-size: clamp(0.72rem, 2.4vw, 1.05rem);
+  overflow-wrap: anywhere;
 }
 .skill-card .skill-score {
   display: flex;
