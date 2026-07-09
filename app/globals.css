@@ -888,6 +888,40 @@ a.job-company:hover {
   justify-content: center;
   margin-top: 26px;
 }
+/* CV button with a résumé preview on hover (mirrors the education preview) */
+.cv-wrap {
+  position: relative;
+  display: inline-flex;
+}
+.cv-preview {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  transform: translate(-50%, 8px);
+  width: 300px;
+  max-width: 80vw;
+  padding: 8px;
+  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 30;
+}
+.cv-preview img {
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+}
+.cv-wrap:hover .cv-preview {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+@media (max-width: 640px) {
+  .cv-preview { display: none; }
+}
 .btn-icon {
   width: 18px;
   height: 18px;

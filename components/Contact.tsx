@@ -7,6 +7,9 @@ import { asset } from "@/lib/asset";
 export default function Contact() {
   const { t, locale } = useI18n();
   const resume = asset(locale === "fr" ? PROFILE.links.resumeFr : PROFILE.links.resumeEn);
+  const resumePreview = asset(
+    locale === "fr" ? "/Marwane_Toury_Dev_FR.png" : "/Marwane_Toury_Dev_EN.png"
+  );
   return (
     <>
       <section id="contact">
@@ -32,9 +35,14 @@ export default function Contact() {
                 </svg>
                 GitHub
               </a>
-              <a className="btn btn-ghost" href={resume} target="_blank" rel="noopener noreferrer">
-                ▤ {t(UI.contact.resume)}
-              </a>
+              <span className="cv-wrap">
+                <a className="btn btn-ghost" href={resume} target="_blank" rel="noopener noreferrer">
+                  ▤ {t(UI.contact.resume)}
+                </a>
+                <span className="cv-preview" aria-hidden="true">
+                  <img src={resumePreview} alt="" loading="lazy" />
+                </span>
+              </span>
             </div>
           </div>
         </div>
