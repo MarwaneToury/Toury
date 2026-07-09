@@ -1,0 +1,900 @@
+:root {
+  /* ---- Felt table ---- */
+  --felt-1: #0e2a2f;
+  --felt-2: #123a41;
+  --felt-edge: #071b1f;
+
+  /* ---- Scoring palette (card-game coded) ---- */
+  --chips: #18a0fb;   /* blue  — the "chips" side of the score */
+  --mult: #ff4b57;    /* red   — the "mult"  side of the score */
+  --gold: #ffd23f;    /* legendary / highlights */
+  --purple: #a879ff;  /* rare */
+  --green: #34d399;   /* uncommon */
+  --cream: #f5efe1;   /* card face */
+  --ink: #1c2230;     /* text on cream */
+
+  /* ---- Surfaces ---- */
+  --panel: rgba(255, 255, 255, 0.04);
+  --panel-border: rgba(255, 255, 255, 0.1);
+  --text: #eaf2f2;
+  --text-dim: #9fb3b3;
+
+  --radius: 16px;
+  --maxw: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-body), system-ui, sans-serif;
+  background:
+    radial-gradient(120% 90% at 50% -10%, var(--felt-2), var(--felt-1) 55%, var(--felt-edge) 100%),
+    var(--felt-1);
+  background-attachment: fixed;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* faint felt weave + vignette overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.015) 0 2px, transparent 2px 4px),
+    repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.04) 0 2px, transparent 2px 4px);
+  mix-blend-mode: overlay;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 40px);
+  position: relative;
+  z-index: 1;
+}
+
+section {
+  padding-block: clamp(72px, 12vh, 128px);
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+
+.section-sub {
+  color: var(--text-dim);
+  margin-top: 12px;
+  max-width: 48ch;
+  font-size: 1.02rem;
+}
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(to bottom, rgba(7, 27, 31, 0.85), rgba(7, 27, 31, 0.35));
+  border-bottom: 1px solid var(--panel-border);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 64px;
+}
+.nav-logo {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-logo .suit {
+  color: var(--mult);
+}
+.nav-links {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.nav-links a {
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover {
+  color: var(--text);
+  background: var(--panel);
+}
+@media (max-width: 720px) {
+  .nav-links a:not(.lang) {
+    display: none;
+  }
+}
+
+.lang {
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  color: var(--text);
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+.flag {
+  width: 20px;
+  height: 14px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  display: inline-block;
+  vertical-align: middle;
+  flex: 0 0 auto;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: 12px;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.12s ease, box-shadow 0.2s, background 0.2s;
+}
+.btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+.btn-primary {
+  background: linear-gradient(180deg, var(--mult), #d83744);
+  color: white;
+  box-shadow: 0 6px 0 #99242e, 0 12px 24px rgba(0, 0, 0, 0.35);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #99242e, 0 16px 30px rgba(0, 0, 0, 0.4);
+}
+.btn-ghost {
+  background: var(--panel);
+  border-color: var(--panel-border);
+  color: var(--text);
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ---------- Playing card (base) ---------- */
+.card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--cream), #e7dfcb);
+  color: var(--ink);
+  border-radius: 18px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  box-shadow:
+    inset 0 0 0 4px rgba(255, 255, 255, 0.5),
+    0 18px 30px rgba(0, 0, 0, 0.4);
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.18s ease, box-shadow 0.25s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* glossy sheen that follows the cursor */
+.card-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 4;
+  pointer-events: none;
+  /* resting gloss is always faintly present; hover brightens + moves it */
+  opacity: 0.45;
+  transition: opacity 0.3s ease, background-position 0.15s ease-out;
+  /* two diagonal parallel light streaks — a "glass card" foil */
+  background: linear-gradient(
+    65deg,
+    transparent 22%,
+    rgba(255, 255, 255, 0) 28%,
+    rgba(255, 255, 255, 0.95) 34%,
+    rgba(255, 255, 255, 0) 40%,
+    transparent 54%,
+    rgba(255, 255, 255, 0) 62%,
+    rgba(255, 255, 255, 0.8) 68%,
+    rgba(255, 255, 255, 0) 74%,
+    transparent 80%
+  );
+  background-size: 175% 175%;
+  /* streaks slide with the cursor (--mx/--my come from TiltCard) */
+  background-position: var(--mx) var(--my);
+  mix-blend-mode: screen;
+}
+.card:hover .card-glare {
+  opacity: 0.95;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-glare { display: none; }
+}
+
+/* rarity accents — Balatro colors: common blue, uncommon green, rare red, legendary purple */
+.card[data-rarity="common"]   { box-shadow: inset 0 0 0 4px rgba(255,255,255,.5), 0 0 0 2px var(--chips), 0 18px 30px rgba(0,0,0,.4); }
+.card[data-rarity="uncommon"] { box-shadow: inset 0 0 0 4px rgba(255,255,255,.5), 0 0 0 2px var(--green), 0 18px 30px rgba(0,0,0,.4); }
+.card[data-rarity="rare"]     { box-shadow: inset 0 0 0 4px rgba(255,255,255,.5), 0 0 0 2px var(--mult), 0 18px 34px rgba(0,0,0,.45); }
+.card[data-rarity="legendary"] {
+  box-shadow: inset 0 0 0 4px rgba(255,255,255,.5), 0 0 0 2px var(--purple), 0 0 40px rgba(168,121,255,.4), 0 18px 34px rgba(0,0,0,.45);
+  animation: legendary-glow 3.5s ease-in-out infinite;
+}
+@keyframes legendary-glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.06); }
+}
+
+/* ---------- Deal-in animation ---------- */
+.deal {
+  opacity: 0;
+  animation: deal-in 0.65s cubic-bezier(0.2, 0.8, 0.25, 1) forwards;
+}
+@keyframes deal-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px) rotate(-8deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0) scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .deal { animation: none; opacity: 1; }
+  .card[data-rarity="legendary"] { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  min-height: calc(100vh - 64px);
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 40px;
+}
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; text-align: center; }
+}
+.hero h1 {
+  font-size: clamp(2.6rem, 8vw, 5rem);
+  margin-bottom: 8px;
+}
+.hero .title {
+  font-family: var(--font-display), system-ui, sans-serif;
+  color: var(--gold);
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 700;
+}
+.hero .pitch {
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  margin: 20px 0 28px;
+  max-width: 46ch;
+}
+@media (max-width: 860px) {
+  .hero .pitch { margin-inline: auto; }
+}
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+@media (max-width: 860px) {
+  .hero-cta { justify-content: center; }
+}
+
+/* hero card fan */
+.fan {
+  position: relative;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fan-slot {
+  position: absolute;
+}
+.fan .card {
+  width: 150px;
+  height: 220px;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+.fan .card .pip {
+  font-size: 3.4rem;
+}
+.fan .card .rank {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+.fan .card .rank.br {
+  top: auto; left: auto; bottom: 10px; right: 12px;
+  transform: rotate(180deg);
+}
+.suit-red { color: var(--mult); }
+.suit-black { color: var(--ink); }
+
+/* ---------- Skills (chips × mult) ---------- */
+.score-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 8px 0 54px;
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+.score-unit {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.score-cap {
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.unit-chips .score-cap { color: var(--chips); }
+.unit-mult .score-cap { color: var(--mult); }
+.unit-score .score-cap { color: var(--gold); }
+.score-chip, .score-mult {
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 800;
+  min-width: 90px;
+  text-align: center;
+}
+.score-chip { background: rgba(24, 160, 251, 0.16); color: var(--chips); border: 1px solid rgba(24,160,251,.4); }
+.score-mult { background: rgba(255, 75, 87, 0.16); color: var(--mult); border: 1px solid rgba(255,75,87,.4); }
+.score-x { font-size: 1.6rem; color: var(--text-dim); }
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (max-width: 720px) {
+  .skill-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.skill-card {
+  padding: 18px;
+  min-height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: default;
+}
+.skill-card .skill-art {
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+.skill-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.18));
+}
+.skill-card .skill-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.skill-card .skill-score {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  margin-top: 8px;
+}
+.skill-card .c { color: var(--chips); }
+.skill-card .m { color: var(--mult); }
+.skill-card .x { color: rgba(0,0,0,.35); font-size: 0.85em; }
+.skill-card:hover {
+  /* one-shot bump: small kick that quickly settles into the lifted state */
+  animation: card-wiggle 0.28s ease-out both;
+}
+/* Balatro-style hover bump: a tiny damped rock that fires once on hover */
+@keyframes card-wiggle {
+  0%   { transform: translateY(-7px) scale(1.03) rotate(-1.2deg); }
+  55%  { transform: translateY(-7px) scale(1.03) rotate(0.6deg); }
+  100% { transform: translateY(-7px) scale(1.03) rotate(0deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skill-card:hover { animation: none; transform: translateY(-6px); }
+}
+
+/* ---------- Balatro pixel font, scoped to the Skills section ---------- */
+#skills *,
+.cashout-eyebrow {
+  font-family: var(--font-pixel), var(--font-display), system-ui, sans-serif;
+  /* the pixel font has one weight — force it so the browser doesn't fake-bold it */
+  font-weight: 400;
+  font-synthesis: none;
+}
+/* Cash Out eyebrow: pixel font, wider so the small caps read cleanly */
+.cashout-eyebrow {
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
+}
+.cashout-money {
+  color: var(--gold);
+  /* the money reward pops in Balatro's gold */
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- Jokers (projects) ---------- */
+.joker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
+}
+.joker {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 320px;
+}
+.joker-head {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.joker-art {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+.joker-year {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+}
+.joker-name {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+.joker-context {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+.joker-ability {
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  flex: 1;
+}
+.rarity-tag {
+  align-self: flex-start;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 800;
+}
+.rarity-common { background: var(--chips); color: #04223b; }
+.rarity-uncommon { background: var(--green); color: #06301f; }
+.rarity-rare { background: var(--mult); color: #3a0a0e; }
+.rarity-legendary { background: var(--purple); color: #22103f; }
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(28, 34, 48, 0.1);
+  color: var(--ink);
+}
+/* keep all Joker tech tags on a single row */
+.joker .tag-row {
+  flex-wrap: nowrap;
+  gap: 5px;
+}
+.joker .tag {
+  font-size: 0.66rem;
+  padding: 3px 7px;
+  white-space: nowrap;
+}
+
+/* ---------- Negative edition (Balatro) ---------- */
+.joker-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  align-self: flex-start;
+}
+.negative-effect {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 7px;
+  color: #e9dcff;
+  background: rgba(150, 90, 255, 0.18);
+  border: 1px solid rgba(150, 90, 255, 0.5);
+  white-space: nowrap;
+}
+
+.joker.negative {
+  /* dark, inverted "card stock" with a purple aura (keeps its green rarity ring) */
+  background: linear-gradient(160deg, #171226, #241a38);
+  color: #efeaff;
+  box-shadow:
+    inset 0 0 0 4px rgba(255, 255, 255, 0.06),
+    0 0 0 2px var(--green),
+    0 0 42px rgba(150, 90, 255, 0.42),
+    0 18px 34px rgba(0, 0, 0, 0.5);
+  animation: legendary-glow 3.6s ease-in-out infinite;
+}
+.joker.negative .joker-year {
+  background: rgba(255, 255, 255, 0.12);
+  color: #efeaff;
+}
+.joker.negative .joker-ability {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #cfc6e6;
+}
+.joker.negative .tag {
+  background: rgba(255, 255, 255, 0.12);
+  color: #efeaff;
+}
+
+/* ---------- Foil edition (Brillante) ---------- */
+.foil-effect {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 7px;
+  color: #eaf3ff;
+  background: #1b4a8a; /* marine blue */
+  border: 1px solid #2c63ad;
+  white-space: nowrap;
+}
+/* the foil edition swaps the diagonal cursor-streaks for 4 rays from center → edges */
+.joker.foil .card-glare {
+  display: block;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 4;
+  /* 4 rays from the card centre; the whole set rotates toward the cursor */
+  background: repeating-conic-gradient(from var(--ray-angle, 26deg) at 50% 50%,
+    rgba(255, 255, 255, 0) 0deg,
+    rgba(255, 255, 255, 0.9) 7deg,
+    rgba(255, 255, 255, 0) 16deg,
+    rgba(255, 255, 255, 0) 90deg);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+  animation: none;
+}
+.joker.foil:hover .card-glare {
+  opacity: 0.85;
+}
+/* silver-gray card stock so the metallic rings read as foil (not white) */
+.joker.foil {
+  background: linear-gradient(158deg, #e2e5ec, #c7cdd9 55%, #d4d9e2);
+  color: #2a2f3a;
+}
+.joker.foil .joker-year {
+  background: rgba(40, 48, 66, 0.1);
+}
+/* silver metallic "filter" laid over the whole card (cool tone + directional sheen) */
+.joker.foil::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(120deg,
+    rgba(120, 140, 178, 0.5) 0%,
+    rgba(226, 233, 246, 0.16) 24%,
+    rgba(128, 148, 184, 0.46) 48%,
+    rgba(232, 238, 249, 0.14) 70%,
+    rgba(138, 156, 192, 0.48) 100%);
+  mix-blend-mode: overlay;
+  opacity: 0.62;
+}
+/* circular glossy foil rings radiating across the whole card */
+.joker.foil::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    /* bright core */
+    radial-gradient(circle at 49% 41%,
+      rgba(255, 255, 255, 0.85), rgba(230, 236, 248, 0.3) 26%, transparent 60%),
+    /* two ring sets with different periods + centers → uneven circle sizes */
+    repeating-radial-gradient(circle at 49% 41%,
+      rgba(255, 255, 255, 0.3) 0 3px,
+      rgba(255, 255, 255, 0) 3px 11px),
+    repeating-radial-gradient(circle at 53% 45%,
+      rgba(214, 224, 242, 0.22) 0 4px,
+      rgba(214, 224, 242, 0) 4px 17px);
+  mix-blend-mode: screen;
+  opacity: 0.66;
+  animation: foil-breathe 5s ease-in-out infinite;
+}
+/* keep the ability text legible under the stronger sheen */
+.joker.foil .joker-ability {
+  background: rgba(255, 255, 255, 0.4);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+@keyframes foil-breathe {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.78; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .joker.foil::after { animation: none; }
+}
+
+/* ---------- Experience (the run) ---------- */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 12px;
+}
+.job {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 20px;
+  padding: 22px;
+  border-radius: var(--radius);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  transition: border-color 0.2s, transform 0.2s;
+}
+.job:hover {
+  border-color: rgba(255, 210, 63, 0.4);
+  transform: translateX(4px);
+}
+@media (max-width: 640px) {
+  .job { grid-template-columns: 1fr; gap: 8px; }
+}
+.job-period {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 0.92rem;
+}
+.job-loc {
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  margin-top: 4px;
+}
+.job-role {
+  font-size: 1.2rem;
+  font-weight: 800;
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+.job-company {
+  color: var(--chips);
+  font-weight: 700;
+}
+.job ul {
+  margin: 12px 0 14px;
+  padding-left: 18px;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+.job ul li { margin-bottom: 6px; }
+.tag-row.dark .tag {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+.edu {
+  margin-top: 18px;
+  padding: 20px 22px;
+  border-radius: var(--radius);
+  background: linear-gradient(120deg, rgba(255,210,63,.1), transparent);
+  border: 1px solid rgba(255, 210, 63, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.edu .cap { font-size: 1.8rem; }
+
+/* ---------- Contact (cash out) ---------- */
+.cashout {
+  text-align: center;
+  max-width: 880px;
+  margin-inline: auto;
+  padding: 40px clamp(20px, 5vw, 48px);
+  border-radius: 24px;
+  background: linear-gradient(160deg, rgba(255,210,63,.12), rgba(255,75,87,.06));
+  border: 1px solid rgba(255, 210, 63, 0.3);
+}
+.cashout .links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 26px;
+}
+.btn-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.footer {
+  text-align: center;
+  padding: 40px 0;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--panel-border);
+}
+
+.section-head {
+  margin-bottom: 40px;
+}
+
+/* ---------- Landing / About face card ---------- */
+.landing {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  padding-block: clamp(40px, 8vh, 96px);
+}
+.landing-title {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  margin-bottom: 8px;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: clamp(28px, 6vw, 64px);
+  align-items: center;
+  width: 100%;
+}
+@media (max-width: 780px) {
+  .about-grid { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+}
+.face-card {
+  width: 280px;
+  height: 400px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.face-corner {
+  position: absolute;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.face-corner.tl { top: 14px; left: 16px; }
+.face-corner.br { bottom: 14px; right: 16px; transform: rotate(180deg); }
+.face-portrait {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 3.6rem;
+  letter-spacing: 0.04em;
+  color: var(--mult);
+  width: 190px;
+  height: 190px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, #fff, #e6e6e2);
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.face-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.face-name {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+.face-role {
+  color: rgba(28, 34, 48, 0.7);
+  font-weight: 600;
+}

@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(npx --yes create-next-app@latest . --typescript --app --no-tailwind --no-src-dir --no-eslint --no-turbopack --use-npm --import-alias \"@/*\" --yes)",
+      "Bash(npm install *)",
+      "Bash(mkdir -p public)",
+      "Bash(npm run *)",
+      "Bash(tee /tmp/devlog.txt)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(node \"C:\\\\Users\\\\tmarw\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-tmarw-Desktop-TouryMWS\\\\c1e1d99d-ec69-4858-9746-7def7027ae00\\\\scratchpad\\\\shoot.mjs\")",
+      "Bash(cp \"C:\\\\Users\\\\tmarw\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-tmarw-Desktop-TouryMWS\\\\c1e1d99d-ec69-4858-9746-7def7027ae00\\\\scratchpad\\\\shoot.mjs\" ./_shoot.mjs)",
+      "Bash(node ./_shoot.mjs)",
+      "Bash(node ./_shoot2.mjs)",
+      "Bash(node ./_shot.mjs)",
+      "Bash(taskkill //PID 17124 //F)",
+      "Bash(npx next *)",
+      "Bash(npx tsc *)",
+      "Bash(git init *)",
+      "Bash(git branch *)",
+      "Bash(git add *)",
+      "Bash(git commit -q -m ' *)"
+    ]
+  }
+}
