@@ -329,6 +329,15 @@ section {
 @media (max-width: 860px) {
   .hero .pitch { margin-inline: auto; }
 }
+
+/* Justify multi-line body paragraphs for a clean, even block edge.
+   hyphens keeps the inter-word spacing tight instead of gappy. */
+.pitch,
+.joker-ability,
+.job ul {
+  text-align: justify;
+  hyphens: auto;
+}
 .hero-cta {
   display: flex;
   gap: 14px;
@@ -475,8 +484,9 @@ section {
   .skill-card:hover { animation: none; transform: translateY(-6px); }
 }
 
-/* ---------- Balatro pixel font, scoped to the Skills section ---------- */
+/* ---------- Balatro pixel font: Skills section, section titles, cash-out ---------- */
 #skills *,
+.section-title,
 .cashout-eyebrow {
   font-family: var(--font-pixel), var(--font-display), system-ui, sans-serif;
   /* the pixel font has one weight — force it so the browser doesn't fake-bold it */

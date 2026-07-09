@@ -19,7 +19,18 @@
       "Bash(git init *)",
       "Bash(git branch *)",
       "Bash(git add *)",
-      "Bash(git commit -q -m ' *)"
+      "Bash(git commit -q -m ' *)",
+      "Bash(gh repo *)",
+      "Bash(git push *)",
+      "Bash(gh api *)",
+      "Bash(git remote *)",
+      "Bash(gh run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://marwanetoury.github.io/Toury/)",
+      "Bash(curl -s https://marwanetoury.github.io/Toury/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://marwanetoury.github.io/Toury/logos/typescript.svg)",
+      "Bash(git commit *)",
+      "Bash(GIT_SEQUENCE_EDITOR=\"sed -i '1s/^pick/reword/'\" GIT_EDITOR=\"cp /c/Users/tmarw/AppData/Local/Temp/claude/c--Users-tmarw-Desktop-TouryMWS/c1e1d99d-ec69-4858-9746-7def7027ae00/scratchpad/newmsg.txt\" git rebase -i --root)",
+      "Bash(git stash *)"
     ]
   }
 }
