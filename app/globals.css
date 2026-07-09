@@ -845,6 +845,10 @@ a.job-company:hover {
 .section-head {
   margin-bottom: 40px;
 }
+/* a little extra breathing room between the Projets title and the cards */
+#projects .section-head {
+  margin-bottom: 56px;
+}
 
 /* ---------- Landing / About face card ---------- */
 .landing {

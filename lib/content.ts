@@ -83,7 +83,7 @@ export const JOKERS: Joker[] = [
     tech: ["Express", "NestJS", "TypeScript", "MongoDB"],
   },
   {
-    context: { fr: "Doctreen", en: "Doctreen" },
+    context: { fr: "Doctreen · Stage de fin d'études", en: "Doctreen · Final-year Internship" },
     year: "2024",
     rarity: "uncommon",
     ability: {
@@ -250,7 +250,7 @@ export const UI = {
     mult: { fr: "Mult", en: "Mult" },
   },
   projects: {
-    title: { fr: "Projets", en: "Projets" },
+    title: { fr: "Projets", en: "Projects" },
     subtitle: {
       fr: "Chaque projet est un Joker avec sa capacité.",
       en: "Each project is a Joker with its own ability.",
