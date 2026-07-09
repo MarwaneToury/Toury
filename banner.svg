@@ -19,27 +19,30 @@
   <rect width="900" height="260" rx="18" fill="url(#glow)"/>
   <rect x="1" y="1" width="898" height="258" rx="17" fill="none" stroke="#ffd23f" stroke-opacity="0.22" stroke-width="1.5"/>
 
-  <!-- face card -->
-  <g transform="translate(58 55)">
-    <rect width="150" height="150" rx="16" fill="url(#card)" stroke="#d8c9a4" stroke-width="1.5"/>
-    <text x="16" y="33" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#1c1a17">M</text>
-    <text x="15" y="55" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#e5474f">&#9830;</text>
-    <text x="75" y="92" font-family="Georgia, 'Times New Roman', serif" font-size="58" fill="#e5474f" text-anchor="middle">&#9830;</text>
-    <g transform="translate(150 150) rotate(180)">
-      <text x="16" y="33" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#1c1a17">M</text>
-      <text x="15" y="55" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#e5474f">&#9830;</text>
+  <!-- face card: proper portrait playing-card proportions (130 x 176) -->
+  <g transform="translate(64 42)">
+    <rect width="130" height="176" rx="14" fill="url(#card)" stroke="#d8c9a4" stroke-width="1.5"/>
+    <!-- top-left corner pip -->
+    <text x="14" y="31" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#1c1a17">M</text>
+    <text x="14" y="50" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#e5474f">&#9830;</text>
+    <!-- center suit -->
+    <text x="65" y="107" font-family="Georgia, 'Times New Roman', serif" font-size="56" fill="#e5474f" text-anchor="middle">&#9830;</text>
+    <!-- bottom-right corner pip (rotated 180) -->
+    <g transform="translate(130 176) rotate(180)">
+      <text x="14" y="31" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#1c1a17">M</text>
+      <text x="14" y="50" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#e5474f">&#9830;</text>
     </g>
   </g>
 
   <!-- title block -->
-  <text x="250" y="110" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="50" font-weight="800" fill="#f6efdd" letter-spacing="1">MARWANE TOURY</text>
-  <rect x="252" y="128" width="60" height="4" rx="2" fill="#ffd23f"/>
-  <text x="324" y="139" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffd23f" letter-spacing="3">SOFTWARE ENGINEER</text>
-  <text x="252" y="176" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9fb3ad">A card-game-inspired portfolio &#183; FR / EN</text>
+  <text x="240" y="112" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="50" font-weight="800" fill="#f6efdd" letter-spacing="1">MARWANE TOURY</text>
+  <rect x="242" y="130" width="60" height="4" rx="2" fill="#ffd23f"/>
+  <text x="314" y="141" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffd23f" letter-spacing="3">SOFTWARE ENGINEER</text>
+  <text x="242" y="178" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9fb3ad">A card-game-inspired portfolio &#183; FR / EN</text>
 
   <!-- suit accents -->
-  <text x="792" y="58" font-family="Georgia, serif" font-size="20" fill="#ffffff" opacity="0.12">&#9824;</text>
-  <text x="832" y="98" font-family="Georgia, serif" font-size="24" fill="#e5474f" opacity="0.22">&#9829;</text>
-  <text x="852" y="156" font-family="Georgia, serif" font-size="20" fill="#ffffff" opacity="0.12">&#9827;</text>
-  <text x="812" y="206" font-family="Georgia, serif" font-size="26" fill="#e5474f" opacity="0.28">&#9830;</text>
+  <text x="800" y="58" font-family="Georgia, serif" font-size="20" fill="#ffffff" opacity="0.12">&#9824;</text>
+  <text x="840" y="98" font-family="Georgia, serif" font-size="24" fill="#e5474f" opacity="0.22">&#9829;</text>
+  <text x="858" y="156" font-family="Georgia, serif" font-size="20" fill="#ffffff" opacity="0.12">&#9827;</text>
+  <text x="820" y="206" font-family="Georgia, serif" font-size="26" fill="#e5474f" opacity="0.28">&#9830;</text>
 </svg>
