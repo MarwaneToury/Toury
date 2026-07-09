@@ -817,6 +817,60 @@ a.job-company:hover {
 }
 .edu .cap { font-size: 1.8rem; }
 
+/* Education entry is a link to the program brochure, with a hover preview */
+.edu-link {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.edu-link:hover {
+  border-color: rgba(255, 210, 63, 0.55);
+  transform: translateY(-1px);
+}
+.edu-link strong { color: var(--text); }
+.edu-hint {
+  margin-left: auto;
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+/* floating brochure preview shown on hover */
+.edu-preview {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  transform: translate(-50%, 8px);
+  width: 300px;
+  max-width: 80vw;
+  padding: 8px;
+  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 20;
+}
+.edu-preview img {
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+}
+.edu-link:hover .edu-preview {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+/* no hover on touch screens — keep the tap-to-open link, drop the popover */
+@media (max-width: 640px) {
+  .edu-preview { display: none; }
+  .edu-hint { font-size: 0.72rem; }
+}
+
 /* ---------- Contact (cash out) ---------- */
 .cashout {
   text-align: center;

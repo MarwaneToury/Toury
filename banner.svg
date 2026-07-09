@@ -19,18 +19,18 @@
   <rect width="900" height="260" rx="18" fill="url(#glow)"/>
   <rect x="1" y="1" width="898" height="258" rx="17" fill="none" stroke="#ffd23f" stroke-opacity="0.22" stroke-width="1.5"/>
 
-  <!-- face card: proper portrait playing-card proportions (130 x 176) -->
-  <g transform="translate(64 42)">
-    <rect width="130" height="176" rx="14" fill="url(#card)" stroke="#d8c9a4" stroke-width="1.5"/>
+  <!-- face card: portrait playing-card proportions (122 x 190, ~1.56 ratio) -->
+  <g transform="translate(66 35)">
+    <rect width="122" height="190" rx="14" fill="url(#card)" stroke="#d8c9a4" stroke-width="1.5"/>
     <!-- top-left corner pip -->
-    <text x="14" y="31" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#1c1a17">M</text>
-    <text x="14" y="50" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#e5474f">&#9830;</text>
+    <text x="13" y="30" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#1c1a17">M</text>
+    <text x="13" y="49" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#e5474f">&#9830;</text>
     <!-- center suit -->
-    <text x="65" y="107" font-family="Georgia, 'Times New Roman', serif" font-size="56" fill="#e5474f" text-anchor="middle">&#9830;</text>
+    <text x="61" y="114" font-family="Georgia, 'Times New Roman', serif" font-size="54" fill="#e5474f" text-anchor="middle">&#9830;</text>
     <!-- bottom-right corner pip (rotated 180) -->
-    <g transform="translate(130 176) rotate(180)">
-      <text x="14" y="31" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#1c1a17">M</text>
-      <text x="14" y="50" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#e5474f">&#9830;</text>
+    <g transform="translate(122 190) rotate(180)">
+      <text x="13" y="30" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#1c1a17">M</text>
+      <text x="13" y="49" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#e5474f">&#9830;</text>
     </g>
   </g>
 

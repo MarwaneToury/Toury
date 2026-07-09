@@ -2,6 +2,7 @@
 
 import { useI18n } from "@/lib/i18n";
 import { JOBS, EDUCATION, UI } from "@/lib/content";
+import { asset } from "@/lib/asset";
 
 export default function Experience() {
   const { t } = useI18n();
@@ -51,15 +52,26 @@ export default function Experience() {
           ))}
         </div>
 
-        <div className="edu">
+        <a
+          className="edu edu-link"
+          href={asset("/IG.jpg")}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <span className="cap">🎓</span>
-          <div>
+          <div className="edu-body">
             <strong>{t(EDUCATION.degree)}</strong>
             <div style={{ color: "var(--text-dim)" }}>
               {EDUCATION.school} · {EDUCATION.year}
             </div>
           </div>
-        </div>
+          <span className="edu-hint">
+            {t({ fr: "Voir la formation ↗", en: "View program ↗" })}
+          </span>
+          <span className="edu-preview" aria-hidden="true">
+            <img src={asset("/IG.jpg")} alt="" loading="lazy" />
+          </span>
+        </a>
       </div>
     </section>
   );
