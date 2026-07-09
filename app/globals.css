@@ -493,6 +493,12 @@ section {
   font-weight: 400;
   font-synthesis: none;
 }
+/* Contact title stays in the normal display font (not the pixel font) */
+#contact .section-title {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  font-synthesis: auto;
+}
 /* Cash Out eyebrow: pixel font, wider so the small caps read cleanly */
 .cashout-eyebrow {
   font-size: 0.95rem;
