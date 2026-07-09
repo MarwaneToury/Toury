@@ -484,10 +484,10 @@ section {
   .skill-card:hover { animation: none; transform: translateY(-6px); }
 }
 
-/* ---------- Balatro pixel font: Skills section, section titles, cash-out ---------- */
+/* ---------- Balatro pixel font: Skills section, section titles, subtitles ---------- */
 #skills *,
 .section-title,
-.cashout-eyebrow {
+.eyebrow {
   font-family: var(--font-pixel), var(--font-display), system-ui, sans-serif;
   /* the pixel font has one weight — force it so the browser doesn't fake-bold it */
   font-weight: 400;
