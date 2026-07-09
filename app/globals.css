@@ -768,6 +768,16 @@ section {
   color: var(--chips);
   font-weight: 700;
 }
+/* company link: subtle underline that fills in on hover */
+a.job-company {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease, opacity 0.15s ease;
+}
+a.job-company:hover {
+  border-bottom-color: currentColor;
+  opacity: 0.85;
+}
 .job ul {
   margin: 12px 0 14px;
   padding-left: 18px;

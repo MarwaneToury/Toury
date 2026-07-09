@@ -22,7 +22,19 @@ export default function Experience() {
               </div>
               <div>
                 <div className="job-role">
-                  {t(job.role)} · <span className="job-company">{job.company}</span>
+                  {t(job.role)} ·{" "}
+                  {job.website ? (
+                    <a
+                      className="job-company"
+                      href={job.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {job.company}
+                    </a>
+                  ) : (
+                    <span className="job-company">{job.company}</span>
+                  )}
                 </div>
                 <ul>
                   {t(job.bullets).map((b, k) => (

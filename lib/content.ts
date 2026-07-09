@@ -30,6 +30,8 @@ export type Skill = {
 export type Job = {
   role: { fr: string; en: string };
   company: string;
+  /** company website — makes the company name a link */
+  website?: string;
   period: { fr: string; en: string };
   location: string;
   bullets: { fr: string[]; en: string[] };
@@ -145,6 +147,7 @@ export const JOBS: Job[] = [
   {
     role: { fr: "Développeur Full-stack", en: "Full-stack Developer" },
     company: "Doctreen",
+    website: "https://www.doctreen.com/",
     period: { fr: "nov. 2024 – déc. 2025", en: "Nov 2024 – Dec 2025" },
     location: "Montpellier",
     tech: ["React", "NestJS", "MongoDB", "Postgres"],
@@ -164,6 +167,7 @@ export const JOBS: Job[] = [
   {
     role: { fr: "Stage de fin d'études", en: "Final-year Internship" },
     company: "Doctreen",
+    website: "https://www.doctreen.com/",
     period: { fr: "avr. – août 2024", en: "Apr – Aug 2024" },
     location: "Montpellier",
     tech: ["Express", "NestJS", "TypeScript", "MongoDB"],
@@ -181,6 +185,7 @@ export const JOBS: Job[] = [
   {
     role: { fr: "Projet de fin d'études", en: "Final-year Project" },
     company: "Conecsio",
+    website: "https://conecsio.com/",
     period: { fr: "déc. 2023 – févr. 2024", en: "Dec 2023 – Feb 2024" },
     location: "Montpellier",
     tech: ["Rust", "React", "Postgres"],
@@ -196,6 +201,7 @@ export const JOBS: Job[] = [
   {
     role: { fr: "Projet industriel", en: "Industrial Project" },
     company: "TRF Retail",
+    website: "https://www.retailnext.ai/",
     period: { fr: "avr. – mai 2023", en: "Apr – May 2023" },
     location: "Montpellier",
     tech: ["Node", "Express", "TypeScript", "MariaDB"],
