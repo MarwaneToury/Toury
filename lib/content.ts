@@ -51,7 +51,7 @@ export const PROFILE = {
     en: "I design and build full-stack web, software and mobile solutions. Based in Montpellier, engineering graduate from Polytech.",
   },
   links: {
-    github: "https://github.com/", // TODO: replace with your GitHub URL
+    github: "https://github.com/MarwaneToury",
     linkedin: "https://linkedin.com/in/marwane-toury",
     email: "marwanetoury@gmail.com",
     resumeFr: "/Marwane_Toury_Dev_FR.pdf",
