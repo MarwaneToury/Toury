@@ -10,7 +10,7 @@ export default function Nav() {
     <nav className="nav">
       <div className="container nav-inner">
         <a href="#top" className="nav-logo">
-          <span className="suit">♦</span> {PROFILE.name}
+          {PROFILE.name}
         </a>
         <div className="nav-links">
           <a href="#about">{t(UI.nav.about)}</a>

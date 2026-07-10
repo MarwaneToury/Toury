@@ -1,8 +1,8 @@
 :root {
   /* ---- Felt table ---- */
-  --felt-1: #0e2a2f;
-  --felt-2: #123a41;
-  --felt-edge: #071b1f;
+  --felt-1: #123a2e;
+  --felt-2: #185040;
+  --felt-edge: #0a2118;
 
   /* ---- Scoring palette (card-game coded) ---- */
   --chips: #18a0fb;   /* blue  — the "chips" side of the score */
@@ -36,6 +36,10 @@ body {
   color: var(--text);
   font-family: var(--font-body), system-ui, sans-serif;
   background:
+    /* overhead pendant spotlight over the table */
+    radial-gradient(100% 55% at 50% 3%, rgba(255, 241, 209, 0.08), transparent 56%),
+    /* edge vignette — light falls off toward the rail */
+    radial-gradient(135% 112% at 50% 40%, transparent 50%, rgba(0, 0, 0, 0.5) 100%),
     radial-gradient(120% 90% at 50% -10%, var(--felt-2), var(--felt-1) 55%, var(--felt-edge) 100%),
     var(--felt-1);
   background-attachment: fixed;
@@ -54,6 +58,77 @@ body::before {
     repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.015) 0 2px, transparent 2px 4px),
     repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.04) 0 2px, transparent 2px 4px);
   mix-blend-mode: overlay;
+}
+
+/* scattered face-down cards + chip clusters down the gutters, scrolling with
+   the page so more props reveal as you scroll (wide screens only) */
+.page-wrap { position: relative; }
+.table-props {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.tp-gutter {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: calc((100vw - var(--maxw)) / 2);
+  overflow: hidden; /* keep props from spilling onto the content column */
+}
+.tp-gutter.left { left: 0; }
+.tp-gutter.right { right: 0; }
+.tp-item {
+  position: absolute;
+  display: block;
+  opacity: 0.55;
+  filter: saturate(0.85) drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));
+}
+/* only where the gutters are genuinely wide */
+@media (max-width: 1439px) {
+  .table-props { display: none; }
+}
+
+/* oversized faint suit watermarks bleeding off opposite corners */
+.suit-wm-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.suit-wm {
+  position: absolute;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1;
+  color: #eaf3f3;
+  opacity: 0.04;
+  user-select: none;
+}
+.suit-wm.tl {
+  top: -11vmin;
+  left: -6vmin;
+  font-size: 50vmin;
+  transform: rotate(-11deg);
+}
+.suit-wm.tr {
+  top: -10vmin;
+  right: -5vmin;
+  font-size: 52vmin;
+  transform: rotate(12deg);
+}
+.suit-wm.bl {
+  bottom: -13vmin;
+  left: -6vmin;
+  font-size: 58vmin;
+  transform: rotate(-10deg);
+}
+.suit-wm.br {
+  bottom: -12vmin;
+  right: -6vmin;
+  font-size: 54vmin;
+  transform: rotate(9deg);
 }
 
 a {
@@ -110,9 +185,23 @@ section {
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: blur(10px);
-  background: linear-gradient(to bottom, rgba(7, 27, 31, 0.85), rgba(7, 27, 31, 0.35));
-  border-bottom: 1px solid var(--panel-border);
+  /* padded wooden poker-table rail sitting on the felt */
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 228, 185, 0.22) 0,
+      rgba(255, 228, 185, 0) 20%,
+      rgba(0, 0, 0, 0.3) 100%
+    ),
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221600%22%20height%3D%2280%22%20preserveAspectRatio%3D%22none%22%3E%3Cfilter%20id%3D%22w%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.006%200.28%22%20numOctaves%3D%225%22%20seed%3D%2214%22%20result%3D%22n%22%2F%3E%3CfeColorMatrix%20in%3D%22n%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200.28%20%200%200%200%200%200.16%20%200%200%200%200%200.07%20%200%200%200%200.6%200%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%236f4a2b%22%2F%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url%28%23w%29%22%2F%3E%3C%2Fsvg%3E");
+  background-size: 100% 100%, 100% 100%;
+  background-repeat: no-repeat, no-repeat;
+  border-bottom: 3px solid #3a2415;
+  border-radius: 0 0 16px 16px;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 224, 178, 0.35),
+    inset 0 -7px 14px rgba(0, 0, 0, 0.35),
+    0 8px 22px rgba(0, 0, 0, 0.4);
 }
 .nav-inner {
   display: flex;
@@ -128,9 +217,8 @@ section {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-.nav-logo .suit {
-  color: var(--mult);
+  color: #f7efdc;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 .nav-links {
   display: flex;
@@ -141,12 +229,13 @@ section {
   padding: 8px 12px;
   border-radius: 10px;
   font-size: 0.9rem;
-  color: var(--text-dim);
+  color: #ecdcc0;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
   transition: color 0.15s, background 0.15s;
 }
 .nav-links a:hover {
-  color: var(--text);
-  background: var(--panel);
+  color: #fff;
+  background: rgba(0, 0, 0, 0.22);
 }
 @media (max-width: 720px) {
   .nav-links a:not(.lang) {
