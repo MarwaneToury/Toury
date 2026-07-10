@@ -110,7 +110,7 @@ body::before {
   top: -11vmin;
   left: -6vmin;
   font-size: 50vmin;
-  transform: rotate(-11deg);
+  transform: rotate(11deg);
 }
 .suit-wm.tr {
   top: -10vmin;
@@ -128,7 +128,7 @@ body::before {
   bottom: -12vmin;
   right: -6vmin;
   font-size: 54vmin;
-  transform: rotate(9deg);
+  transform: rotate(-9deg);
 }
 
 a {
