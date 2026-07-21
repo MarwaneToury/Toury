@@ -148,7 +148,7 @@ export const JOBS: Job[] = [
     role: { fr: "Développeur Full-stack", en: "Full-stack Developer" },
     company: "Doctreen",
     website: "https://www.doctreen.com/",
-    period: { fr: "nov. 2024 – aujourd'hui", en: "Nov 2024 – Present" },
+    period: { fr: "nov. 2024 – déc. 2025", en: "Nov 2024 – Dec 2025" },
     location: "Montpellier",
     tech: ["React", "NestJS", "MongoDB", "Postgres"],
     bullets: {
